@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react';
 import { type PatientVitalsAndBiometrics } from '../common';
 
 export interface VitalsTableRow extends PatientVitalsAndBiometrics {
@@ -8,6 +9,7 @@ export interface VitalsTableRow extends PatientVitalsAndBiometrics {
   spo2Render: string | number;
   temperatureRender: string | number;
   respiratoryRateRender: string | number;
+  notesRender: ReactNode;
 }
 
 export interface VitalsTableHeader {
@@ -17,7 +19,8 @@ export interface VitalsTableHeader {
     | 'bloodPressureRender'
     | 'pulseRender'
     | 'respiratoryRateRender'
-    | 'spo2Render';
+    | 'spo2Render'
+    | 'notesRender';
   header: string;
   isSortable?: boolean;
   sortFunc: (valueA: VitalsTableRow, valueB: VitalsTableRow) => number;

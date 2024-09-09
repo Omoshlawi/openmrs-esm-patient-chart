@@ -181,6 +181,8 @@ export function useVitalsAndBiometrics(patientUuid: string, mode: VitalsAndBiome
           return 'weight';
         case concepts.midUpperArmCircumferenceUuid:
           return 'muac';
+        case concepts.clinicalImpressionCommentUuid:
+          return 'notes';
         default:
           return ''; // or throw an error for unknown conceptUuid
       }
@@ -195,6 +197,7 @@ export function useVitalsAndBiometrics(patientUuid: string, mode: VitalsAndBiome
       concepts.respiratoryRateUuid,
       concepts.temperatureUuid,
       concepts.weightUuid,
+      concepts.clinicalImpressionCommentUuid,
     ],
   );
 
@@ -299,7 +302,7 @@ function vitalsProperties(conceptMetadata: Array<ConceptMetadata> | undefined) {
       getReferenceRangesForConcept(resource?.code?.coding?.[0]?.code, conceptMetadata),
     ),
     recordedDate: resource?.effectiveDateTime,
-    value: resource?.valueQuantity?.value,
+    value: resource?.valueQuantity?.value ?? resource?.valueString,
   });
 }
 
